@@ -1,6 +1,6 @@
 <?php
 /**
- * Mockery
+ * ehough_mockery_Mockery
  *
  * LICENSE
  *
@@ -12,8 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
- * @package    Mockery
+ *
+ *
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2010 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
@@ -24,13 +24,13 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
 
     public function setup ()
     {
-        $this->container = new \Mockery\Container;
+        $this->container = new ehough_mockery_mockery_Container;
         $this->mock = $this->container->mock('foo');
     }
     
     public function teardown()
     {
-        \Mockery::getConfiguration()->allowMockingNonExistentMethods(true);
+        ehough_mockery_Mockery::getConfiguration()->allowMockingNonExistentMethods(true);
         $this->container->mockery_close();
     }
 
@@ -132,7 +132,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testReturnsUndefined()
     {
         $this->mock->shouldReceive('foo')->andReturnUndefined();
-        $this->assertTrue($this->mock->foo() instanceof \Mockery\Undefined);
+        $this->assertTrue($this->mock->foo() instanceof ehough_mockery_mockery_Undefined);
     }
 
     public function testReturnsValuesSetAsArray()
@@ -198,7 +198,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testExpectsNoArgumentsThrowsExceptionIfAnyPassed()
     {
@@ -227,7 +227,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testThrowsExceptionOnNoArgumentMatch()
     {
@@ -241,7 +241,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testNeverCalledThrowsExceptionOnCall()
     {
@@ -258,7 +258,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testCalledOnceThrowsExceptionIfNotCalled()
     {
@@ -267,7 +267,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testCalledOnceThrowsExceptionIfCalledTwice()
     {
@@ -286,7 +286,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testCalledTwiceThrowsExceptionIfNotCalled()
     {
@@ -295,7 +295,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testCalledOnceThrowsExceptionIfCalledThreeTimes()
     {
@@ -332,7 +332,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testTimesCountCallThrowsExceptionOnTooFewCalls()
     {
@@ -342,7 +342,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testTimesCountCallThrowsExceptionOnTooManyCalls()
     {
@@ -370,7 +370,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testCalledAtLeastThrowsExceptionOnTooFewCalls()
     {
@@ -396,7 +396,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testCalledAtLeastThrowsExceptionOnTooManyCalls()
     {
@@ -408,7 +408,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testExactCountersOverrideAnyPriorSetNonExactCounters()
     {
@@ -434,7 +434,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testComboOfLeastAndMostCallsThrowsExceptionAtTooFewCalls()
     {
@@ -443,7 +443,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testComboOfLeastAndMostCallsThrowsExceptionAtTooManyCalls()
     {
@@ -467,7 +467,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testCallCountingThrowsExceptionOnAnyMismatch()
     {
@@ -492,7 +492,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testOrderedCallsWithOutOfOrderError()
     {
@@ -513,7 +513,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testDifferentArgumentsAndOrderingsThrowExceptionWhenInWrongOrder()
     {
@@ -547,7 +547,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testOrderingOfDefaultGroupingThrowsExceptionOnWrongOrder()
     {
@@ -599,7 +599,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testGroupedOrderingThrowsExceptionWhenCallsDisordered()
     {
@@ -642,7 +642,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testEnsuresOrderingIsCrossMockWhenGloballyFlagSet()
     {
@@ -711,13 +711,13 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
         try {
             $this->mock->foo(1);
             $this->fail('Expected exception not thrown');
-        } catch (\Mockery\Exception $e) {}
+        } catch (ehough_mockery_mockery_Exception $e) {}
         $this->mock->foo(2);
         $this->container->mockery_verify();
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testDefaultExpectationsCanBeOrdered()
     {
@@ -741,7 +741,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     
     public function testByDefaultOperatesFromMockConstruction()
     {
-        $container = new \Mockery\Container;
+        $container = new ehough_mockery_mockery_Container;
         $mock = $container->mock('f', array('foo'=>'rfoo','bar'=>'rbar','baz'=>'rbaz'))->byDefault();
         $mock->shouldReceive('foo')->andReturn('foobar');
         $this->assertEquals('foobar', $mock->foo());
@@ -752,7 +752,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     
     public function testByDefaultOnAMockDoesSquatWithoutExpectations()
     {
-        $container = new \Mockery\Container;
+        $container = new ehough_mockery_mockery_Container;
         $mock = $container->mock('f')->byDefault();
     }
 
@@ -765,7 +765,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testByDefaultPreventedFromSettingDefaultWhenDefaultingExpectationWasReplaced()
     {
@@ -780,7 +780,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     
     public function testAnyConstraintMatchesAnyArg()
     {
-        $this->mock->shouldReceive('foo')->with(1, Mockery::any())->twice();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::any())->twice();
         $this->mock->foo(1, 2);
         $this->mock->foo(1, 'str');
         $this->container->mockery_verify();
@@ -789,7 +789,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testAnyConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::any())->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::any())->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -798,7 +798,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     
     public function testArrayConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('array'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('array'))->once();
         $this->mock->foo(array());
         $this->container->mockery_verify();
     }
@@ -806,7 +806,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testArrayConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('array'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('array'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -814,18 +814,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testArrayConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('array'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('array'))->once();
         $this->mock->foo(1);
         $this->container->mockery_verify();
     }
     
     public function testBoolConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('bool'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('bool'))->once();
         $this->mock->foo(true);
         $this->container->mockery_verify();
     }
@@ -833,7 +833,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testBoolConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('bool'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('bool'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -841,18 +841,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testBoolConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('bool'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('bool'))->once();
         $this->mock->foo(1);
         $this->container->mockery_verify();
     }
     
     public function testCallableConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('callable'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('callable'))->once();
         $this->mock->foo(function(){return 'f';});
         $this->container->mockery_verify();
     }
@@ -860,7 +860,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testCallableConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('callable'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('callable'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -868,18 +868,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testCallableConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('callable'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('callable'))->once();
         $this->mock->foo(1);
         $this->container->mockery_verify();
     }
     
     public function testDoubleConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('double'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('double'))->once();
         $this->mock->foo(2.25);
         $this->container->mockery_verify();
     }
@@ -887,7 +887,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testDoubleConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('double'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('double'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -895,18 +895,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testDoubleConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('double'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('double'))->once();
         $this->mock->foo(1);
         $this->container->mockery_verify();
     }
     
     public function testFloatConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('float'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('float'))->once();
         $this->mock->foo(2.25);
         $this->container->mockery_verify();
     }
@@ -914,7 +914,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testFloatConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('float'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('float'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -922,18 +922,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testFloatConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('float'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('float'))->once();
         $this->mock->foo(1);
         $this->container->mockery_verify();
     }
     
     public function testIntConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('int'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('int'))->once();
         $this->mock->foo(2);
         $this->container->mockery_verify();
     }
@@ -941,7 +941,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testIntConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('int'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('int'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -949,18 +949,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testIntConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('int'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('int'))->once();
         $this->mock->foo('f');
         $this->container->mockery_verify();
     }
     
     public function testLongConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('long'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('long'))->once();
         $this->mock->foo(2);
         $this->container->mockery_verify();
     }
@@ -968,7 +968,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testLongConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('long'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('long'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -976,18 +976,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testLongConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('long'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('long'))->once();
         $this->mock->foo('f');
         $this->container->mockery_verify();
     }
     
     public function testNullConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('null'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('null'))->once();
         $this->mock->foo(null);
         $this->container->mockery_verify();
     }
@@ -995,7 +995,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testNullConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('null'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('null'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1003,18 +1003,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testNullConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('null'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('null'))->once();
         $this->mock->foo('f');
         $this->container->mockery_verify();
     }
     
     public function testNumericConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('numeric'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('numeric'))->once();
         $this->mock->foo('2');
         $this->container->mockery_verify();
     }
@@ -1022,7 +1022,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testNumericConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('numeric'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('numeric'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1030,18 +1030,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testNumericConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('numeric'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('numeric'))->once();
         $this->mock->foo('f');
         $this->container->mockery_verify();
     }
     
     public function testObjectConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('object'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('object'))->once();
         $this->mock->foo(new stdClass);
         $this->container->mockery_verify();
     }
@@ -1049,7 +1049,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testObjectConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('object`'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('object`'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1057,18 +1057,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testObjectConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('object'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('object'))->once();
         $this->mock->foo('f');
         $this->container->mockery_verify();
     }
     
     public function testRealConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('real'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('real'))->once();
         $this->mock->foo(2.25);
         $this->container->mockery_verify();
     }
@@ -1076,7 +1076,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testRealConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('real'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('real'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1084,18 +1084,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testRealConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('real'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('real'))->once();
         $this->mock->foo('f');
         $this->container->mockery_verify();
     }
     
     public function testResourceConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('resource'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('resource'))->once();
         $r = fopen(dirname(__FILE__) . '/_files/file.txt', 'r');
         $this->mock->foo($r);
         $this->container->mockery_verify();
@@ -1104,7 +1104,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testResourceConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('resource'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('resource'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1112,18 +1112,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testResourceConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('resource'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('resource'))->once();
         $this->mock->foo('f');
         $this->container->mockery_verify();
     }
     
     public function testScalarConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('scalar'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('scalar'))->once();
         $this->mock->foo(2);
         $this->container->mockery_verify();
     }
@@ -1131,7 +1131,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testScalarConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('scalar'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('scalar'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1139,18 +1139,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testScalarConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('scalar'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('scalar'))->once();
         $this->mock->foo(array());
         $this->container->mockery_verify();
     }
     
     public function testStringConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('string'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('string'))->once();
         $this->mock->foo('2');
         $this->container->mockery_verify();
     }
@@ -1158,7 +1158,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testStringConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('string'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('string'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1166,18 +1166,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testStringConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('string'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('string'))->once();
         $this->mock->foo(1);
         $this->container->mockery_verify();
     }
     
     public function testClassConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('stdClass'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('stdClass'))->once();
         $this->mock->foo(new stdClass);
         $this->container->mockery_verify();
     }
@@ -1185,7 +1185,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testClassConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::type('stdClass'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::type('stdClass'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1193,18 +1193,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testClassConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::type('stdClass'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::type('stdClass'))->once();
         $this->mock->foo(new Exception);
         $this->container->mockery_verify();
     }
     
     public function testDucktypeConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::ducktype('quack', 'swim'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::ducktype('quack', 'swim'))->once();
         $this->mock->foo(new Mockery_Duck);
         $this->container->mockery_verify();
     }
@@ -1212,7 +1212,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testDucktypeConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::ducktype('quack', 'swim'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::ducktype('quack', 'swim'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1220,18 +1220,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testDucktypeConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::ducktype('quack', 'swim'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::ducktype('quack', 'swim'))->once();
         $this->mock->foo(new Mockery_Duck_Nonswimmer);
         $this->container->mockery_verify();
     }
     
     public function testArrayContentConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::subset(array('a'=>1,'b'=>2)))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::subset(array('a'=>1,'b'=>2)))->once();
         $this->mock->foo(array('a'=>1,'b'=>2,'c'=>3));
         $this->container->mockery_verify();
     }
@@ -1239,7 +1239,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testArrayContentConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::subset(array('a'=>1,'b'=>2)))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::subset(array('a'=>1,'b'=>2)))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1247,18 +1247,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testArrayContentConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::subset(array('a'=>1,'b'=>2)))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::subset(array('a'=>1,'b'=>2)))->once();
         $this->mock->foo(array('a'=>1,'c'=>3));
         $this->container->mockery_verify();
     }
     
     public function testContainsConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::contains(1, 2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::contains(1, 2))->once();
         $this->mock->foo(array('a'=>1,'b'=>2,'c'=>3));
         $this->container->mockery_verify();
     }
@@ -1266,7 +1266,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testContainsConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::contains(1, 2))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::contains(1, 2))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1274,18 +1274,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testContainsConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::contains(1, 2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::contains(1, 2))->once();
         $this->mock->foo(array('a'=>1,'c'=>3));
         $this->container->mockery_verify();
     }
     
     public function testHasKeyConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::hasKey('c'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::hasKey('c'))->once();
         $this->mock->foo(array('a'=>1,'b'=>2,'c'=>3));
         $this->container->mockery_verify();
     }
@@ -1293,7 +1293,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testHasKeyConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::hasKey('a'))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::hasKey('a'))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, array('a'=>1), 3);
@@ -1301,18 +1301,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testHasKeyConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::hasKey('c'))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::hasKey('c'))->once();
         $this->mock->foo(array('a'=>1,'b'=>3));
         $this->container->mockery_verify();
     }
     
     public function testHasValueConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::hasValue(1))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::hasValue(1))->once();
         $this->mock->foo(array('a'=>1,'b'=>2,'c'=>3));
         $this->container->mockery_verify();
     }
@@ -1320,7 +1320,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testHasValueConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::hasValue(1))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::hasValue(1))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, array('a'=>1), 3);
@@ -1328,11 +1328,11 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testHasValueConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::hasValue(2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::hasValue(2))->once();
         $this->mock->foo(array('a'=>1,'b'=>3));
         $this->container->mockery_verify();
     }
@@ -1340,25 +1340,25 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testOnConstraintMatchesArgument_ClosureEvaluatesToTrue()
     {
         $function = function($arg){return $arg % 2 == 0;};
-        $this->mock->shouldReceive('foo')->with(Mockery::on($function))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::on($function))->once();
         $this->mock->foo(4);
         $this->container->mockery_verify();
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testOnConstraintThrowsExceptionWhenConstraintUnmatched_ClosureEvaluatesToFalse()
     {
         $function = function($arg){return $arg % 2 == 0;};
-        $this->mock->shouldReceive('foo')->with(Mockery::on($function))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::on($function))->once();
         $this->mock->foo(5);
         $this->container->mockery_verify();
     }
     
     public function testMustBeConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::mustBe(2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::mustBe(2))->once();
         $this->mock->foo(2);
         $this->container->mockery_verify();
     }
@@ -1366,7 +1366,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testMustBeConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::mustBe(2))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::mustBe(2))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1374,11 +1374,11 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testMustBeConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::mustBe(2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::mustBe(2))->once();
         $this->mock->foo('2');
         $this->container->mockery_verify();
     }
@@ -1387,7 +1387,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     {
         $a = new stdClass; $a->foo = 1;
         $b = new stdClass; $b->foo = 1;
-        $this->mock->shouldReceive('foo')->with(Mockery::mustBe($a))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::mustBe($a))->once();
         $this->mock->foo($b);
         $this->container->mockery_verify();
     }
@@ -1396,7 +1396,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     {
         $a = new stdClass; $a->foo = 1;
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::mustBe($a))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::mustBe($a))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, $a, 3);
@@ -1404,13 +1404,13 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testMustBeConstraintThrowsExceptionWhenConstraintUnmatchedWithObject()
     {
         $a = new stdClass; $a->foo = 1;
         $b = new stdClass; $b->foo = 2;
-        $this->mock->shouldReceive('foo')->with(Mockery::mustBe($a))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::mustBe($a))->once();
         $this->mock->foo($b);
         $this->container->mockery_verify();
     }
@@ -1418,14 +1418,14 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testMatchPrecedenceBasedOnExpectedCallsFavouringExplicitMatch()
     {
         $this->mock->shouldReceive('foo')->with(1)->once();
-        $this->mock->shouldReceive('foo')->with(Mockery::any())->never();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::any())->never();
         $this->mock->foo(1);
         $this->container->mockery_verify();
     }
     
     public function testMatchPrecedenceBasedOnExpectedCallsFavouringAnyMatch()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::any())->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::any())->once();
         $this->mock->shouldReceive('foo')->with(1)->never();
         $this->mock->foo(1);
         $this->container->mockery_verify();
@@ -1440,23 +1440,23 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testReturnUndefinedIfIgnoreMissingMethodsSet()
     {
         $this->mock->shouldIgnoreMissing()->asUndefined();
-        $this->assertTrue($this->mock->g(1,2) instanceof \Mockery\Undefined);
+        $this->assertTrue($this->mock->g(1,2) instanceof ehough_mockery_mockery_Undefined);
     }
     
     public function testReturnAsUndefinedAllowsForInfiniteSelfReturningChain()
     {
         $this->mock->shouldIgnoreMissing()->asUndefined();
-        $this->assertTrue($this->mock->g(1,2)->a()->b()->c() instanceof \Mockery\Undefined);
+        $this->assertTrue($this->mock->g(1,2)->a()->b()->c() instanceof ehough_mockery_mockery_Undefined);
     }
 
     public function testShouldIgnoreMissingFluentInterface()
     {
-        $this->assertTrue($this->mock->shouldIgnoreMissing() instanceof \Mockery\MockInterface);
+        $this->assertTrue($this->mock->shouldIgnoreMissing() instanceof ehough_mockery_mockery_MockInterface);
     }
 
     public function testShouldIgnoreMissingAsUndefinedFluentInterface()
     {
-        $this->assertTrue($this->mock->shouldIgnoreMissing()->asUndefined() instanceof \Mockery\MockInterface);
+        $this->assertTrue($this->mock->shouldIgnoreMissing()->asUndefined() instanceof ehough_mockery_mockery_MockInterface);
     }
 
     public function testShouldIgnoreMissingAsDefinedProxiesToUndefinedAllowingToString()
@@ -1475,12 +1475,12 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testOptionalMockRetrieval()
     {
         $m = $this->container->mock('f')->shouldReceive('foo')->with(1)->andReturn(3)->mock();
-        $this->assertTrue($m instanceof \Mockery\MockInterface);
+        $this->assertTrue($m instanceof ehough_mockery_mockery_MockInterface);
     }
     
     public function testNotConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::not(1))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::not(1))->once();
         $this->mock->foo(2);
         $this->container->mockery_verify();
     }
@@ -1488,7 +1488,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testNotConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::not(2))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::not(2))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1496,18 +1496,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testNotConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::not(2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::not(2))->once();
         $this->mock->foo(2);
         $this->container->mockery_verify();
     }
 
     public function testAnyOfConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::anyOf(1, 2))->twice();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::anyOf(1, 2))->twice();
         $this->mock->foo(2);
         $this->mock->foo(1);
         $this->container->mockery_verify();
@@ -1516,7 +1516,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testAnyOfConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::anyOf(1, 2))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::anyOf(1, 2))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 2, 3);
@@ -1524,18 +1524,18 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testAnyOfConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::anyOf(1, 2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::anyOf(1, 2))->once();
         $this->mock->foo(3);
         $this->container->mockery_verify();
     }
     
     public function testNotAnyOfConstraintMatchesArgument()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::notAnyOf(1, 2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::notAnyOf(1, 2))->once();
         $this->mock->foo(3);
         $this->container->mockery_verify();
     }
@@ -1543,7 +1543,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     public function testNotAnyOfConstraintNonMatchingCase()
     {
         $this->mock->shouldReceive('foo')->times(3);
-        $this->mock->shouldReceive('foo')->with(1, Mockery::notAnyOf(1, 2))->never();
+        $this->mock->shouldReceive('foo')->with(1, ehough_mockery_Mockery::notAnyOf(1, 2))->never();
         $this->mock->foo();
         $this->mock->foo(1);
         $this->mock->foo(1, 4, 3);
@@ -1551,42 +1551,42 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testNotAnyOfConstraintThrowsExceptionWhenConstraintUnmatched()
     {
-        $this->mock->shouldReceive('foo')->with(Mockery::notAnyOf(1, 2))->once();
+        $this->mock->shouldReceive('foo')->with(ehough_mockery_Mockery::notAnyOf(1, 2))->once();
         $this->mock->foo(2);
         $this->container->mockery_verify();
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testGlobalConfigMayForbidMockingNonExistentMethodsOnClasses()
     {
-        \Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
+        ehough_mockery_Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
         $mock = $this->container->mock('stdClass');
         $mock->shouldReceive('foo');
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      * @expectedExceptionMessage Mockery's configuration currently forbids mocking 
      */
     public function testGlobalConfigMayForbidMockingNonExistentMethodsOnAutoDeclaredClasses()
     {
-        \Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
+        ehough_mockery_Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
         $mock = $this->container->mock('SomeMadeUpClass');
         $mock->shouldReceive('foo');
     }
 
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testGlobalConfigMayForbidMockingNonExistentMethodsOnObjects()
     {
-        \Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
+        ehough_mockery_Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
         $mock = $this->container->mock(new stdClass);
         $mock->shouldReceive('foo');
     }
@@ -1596,7 +1596,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
         $service = $this->container->mock('MyService');
         $service->shouldReceive('login')->with('user', 'pass')->once()->andReturn(true);
         $service->shouldReceive('hasBookmarksTagged')->with('php')->once()->andReturn(false);
-        $service->shouldReceive('addBookmark')->with('/^http:/', \Mockery::type('string'))->times(3)->andReturn(true);
+        $service->shouldReceive('addBookmark')->with('/^http:/', ehough_mockery_Mockery::type('string'))->times(3)->andReturn(true);
         $service->shouldReceive('hasBookmarksTagged')->with('php')->once()->andReturn(true);
         
         $this->assertTrue($service->login('user', 'pass'));
@@ -1614,7 +1614,7 @@ class ExpectationTest extends PHPUnit_Framework_TestCase
         $service = $this->container->mock('MyService');
         $service->shouldReceive('login')->with('user', 'pass')->once()->andReturn(true);
         $service->shouldReceive('hasBookmarksTagged')->with('php')->once()->andReturn(false);
-        $service->shouldReceive('addBookmark')->with('/^http:/', \Mockery::type('string'))->times(3)->andReturn(true);
+        $service->shouldReceive('addBookmark')->with('/^http:/', ehough_mockery_Mockery::type('string'))->times(3)->andReturn(true);
         $service->shouldReceive('hasBookmarksTagged')->with('php')->twice()->andReturn(true);
         
         $this->assertTrue($service->login('user', 'pass'));

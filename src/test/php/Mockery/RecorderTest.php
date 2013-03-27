@@ -1,6 +1,6 @@
 <?php
 /**
- * Mockery
+ * ehough_mockery_Mockery
  *
  * LICENSE
  *
@@ -12,8 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
- * @package    Mockery
+ *
+ *
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2010 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
@@ -24,7 +24,7 @@ class RecorderTest extends PHPUnit_Framework_TestCase
 
     public function setup ()
     {
-        $this->container = new \Mockery\Container;
+        $this->container = new ehough_mockery_mockery_Container;
     }
     
     public function teardown()
@@ -97,7 +97,7 @@ class RecorderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testRecordingDoesSpecifyExactOrderInStrictMode()
     {
@@ -115,7 +115,7 @@ class RecorderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testArgumentsAreMatchedExactlyUnderStrictMode()
     {
@@ -130,7 +130,7 @@ class RecorderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testThrowsExceptionWhenArgumentsNotExpected()
     {
@@ -157,7 +157,7 @@ class RecorderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testCallCountConstrainedInStrictMode()
     {

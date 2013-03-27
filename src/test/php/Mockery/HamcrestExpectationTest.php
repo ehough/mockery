@@ -1,6 +1,6 @@
 <?php
 /**
- * Mockery
+ * ehough_mockery_Mockery
  *
  * LICENSE
  *
@@ -12,8 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
- * @package    Mockery
+ *
+ *
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2011 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
@@ -24,13 +24,13 @@ class HamcrestExpectationTest extends PHPUnit_Framework_TestCase
 
     public function setup ()
     {
-        $this->container = new \Mockery\Container;
+        $this->container = new ehough_mockery_mockery_Container;
         $this->mock = $this->container->mock('foo');
     }
     
     public function teardown()
     {
-        \Mockery::getConfiguration()->allowMockingNonExistentMethods(true);
+        ehough_mockery_Mockery::getConfiguration()->allowMockingNonExistentMethods(true);
         $this->container->mockery_close();
     }
     
@@ -51,7 +51,7 @@ class HamcrestExpectationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testGreaterThanConstraintNotMatchesArgument()
     {

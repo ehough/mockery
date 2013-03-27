@@ -1,6 +1,6 @@
 <?php
 /**
- * Mockery
+ * ehough_mockery_Mockery
  *
  * LICENSE
  *
@@ -12,8 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
- * @package    Mockery
+ *
+ *
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2010 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mutateme/master/LICENSE New BSD License
@@ -28,9 +28,9 @@ error_reporting(E_ALL);
  * Determine the root, library, and tests directories of the framework
  * distribution.
  */
-$root    = realpath(dirname(dirname(__FILE__)));
-$library = "$root/library";
-$tests   = "$root/tests";
+$root    = realpath(dirname(dirname(__FILE__)) . '/../../');
+$library = "$root/src/main/php";
+$tests   = "$root/src/test/php";
 
 /**
  * Check that --dev composer installation was done
@@ -76,7 +76,7 @@ if (defined('TESTS_GENERATE_REPORT') && TESTS_GENERATE_REPORT === true &&
     PHPUnit_Util_Filter::addDirectoryToFilter(PHP_LIBDIR);
 }
 
-require __DIR__.'/../vendor/autoload.php';
+require $root . '/vendor/autoload.php';
 
 /*
  * Unset global variables that are no longer needed.

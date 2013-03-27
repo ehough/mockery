@@ -1,6 +1,6 @@
 <?php
 /**
- * Mockery
+ * ehough_mockery_Mockery
  *
  * LICENSE
  *
@@ -12,8 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
- * @package    Mockery
+ *
+ *
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2012 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
@@ -27,7 +27,7 @@ class Mockery_AdhocTest extends PHPUnit_Framework_TestCase
 
     public function setup ()
     {
-        $this->container = new \Mockery\Container;
+        $this->container = new ehough_mockery_mockery_Container;
     }
     
     public function teardown()
@@ -44,25 +44,25 @@ class Mockery_AdhocTest extends PHPUnit_Framework_TestCase
     public function testMockeryInterfaceForClass()
     {
         $m = $this->container->mock('SplFileInfo');
-        $this->assertTrue($m instanceof \Mockery\MockInterface);
+        $this->assertTrue($m instanceof ehough_mockery_mockery_MockInterface);
     }
 
     public function testMockeryInterfaceForNonExistingClass()
     {
         $m = $this->container->mock('ABC_IDontExist');
-        $this->assertTrue($m instanceof \Mockery\MockInterface);
+        $this->assertTrue($m instanceof ehough_mockery_mockery_MockInterface);
     }
 
     public function testMockeryInterfaceForInterface()
     {
         $m = $this->container->mock('MockeryTest_NameOfInterface');
-        $this->assertTrue($m instanceof \Mockery\MockInterface);
+        $this->assertTrue($m instanceof ehough_mockery_mockery_MockInterface);
     }
 
     public function testMockeryInterfaceForAbstract()
     {
         $m = $this->container->mock('MockeryTest_NameOfAbstract');
-        $this->assertTrue($m instanceof \Mockery\MockInterface);
+        $this->assertTrue($m instanceof ehough_mockery_mockery_MockInterface);
     }
 
 

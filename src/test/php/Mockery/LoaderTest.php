@@ -1,6 +1,6 @@
 <?php
 /**
- * Mockery
+ * ehough_mockery_Mockery
  *
  * LICENSE
  *
@@ -12,8 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
- * @package    Mockery
+ *
+ *
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2010 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
@@ -29,8 +29,8 @@ class Mockery_LoaderTest extends PHPUnit_Framework_TestCase
 
     public function testCallingRegisterRegistersSelfAsSplAutoloaderFunction()
     {
-        require_once 'Mockery/Loader.php';
-        $loader = new \Mockery\Loader;
+        require_once 'ehough/mockery/mockery/Loader.php';
+        $loader = new ehough_mockery_mockery_Loader;
         $loader->register();
         $expected = array($loader, 'loadClass');
         $this->assertTrue(in_array($expected, spl_autoload_functions()));
@@ -39,7 +39,7 @@ class Mockery_LoaderTest extends PHPUnit_Framework_TestCase
     public function tearDown()
     {
         spl_autoload_unregister('\Mockery\Loader::loadClass');
-        $loader = new \Mockery\Loader;
+        $loader = new ehough_mockery_mockery_Loader;
         $loader->register();
     }
 

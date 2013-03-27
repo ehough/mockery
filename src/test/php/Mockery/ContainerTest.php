@@ -1,6 +1,6 @@
 <?php
 /**
- * Mockery
+ * ehough_mockery_Mockery
  *
  * LICENSE
  *
@@ -12,8 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
- * @package    Mockery
+ *
+ *
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2010 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
@@ -24,7 +24,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
     public function setup ()
     {
-        $this->container = new \Mockery\Container;
+        $this->container = new ehough_mockery_mockery_Container;
     }
 
     public function teardown()
@@ -45,7 +45,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $m->shouldReceive('foo')->with(1)->andReturn('bar');
         try {
             $m->foo();
-        } catch (\Mockery\Exception $e) {
+        } catch (ehough_mockery_mockery_Exception $e) {
             $this->assertTrue((bool) preg_match("/Foo/", $e->getMessage()));
         }
     }
@@ -163,13 +163,13 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
     public function testBlockForwardingToPartialObject()
     {
-        $m = $this->container->mock(new MockeryTestBar1, array('foo'=>1, \Mockery\Container::BLOCKS => array('method1')));
+        $m = $this->container->mock(new MockeryTestBar1, array('foo'=>1, ehough_mockery_mockery_Container::BLOCKS => array('method1')));
         $this->assertSame($m, $m->method1());
     }
 
     public function testPartialWithArrayDefs()
     {
-        $m = $this->container->mock(new MockeryTestBar1, array('foo'=>1, \Mockery\Container::BLOCKS => array('method1')));
+        $m = $this->container->mock(new MockeryTestBar1, array('foo'=>1, ehough_mockery_mockery_Container::BLOCKS => array('method1')));
         $this->assertEquals(1, $m->foo());
     }
 
@@ -182,7 +182,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testMockingAKnownConcreteFinalClassThrowsErrors_OnlyPartialMocksCanMockFinalElements()
     {
@@ -346,7 +346,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      * @group partial
      */
     public function testThrowsExceptionIfSettingExpectationForNonMockedMethodOfPartialMock()
@@ -358,7 +358,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      * @group partial
      */
     public function testThrowsExceptionIfClassOrInterfaceForPartialMockDoesNotExist()
@@ -398,7 +398,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testCanMockClassUsingMagicCallMethodsInPlaceOfNormalMethods()
     {
-        $m = \Mockery::mock('Gateway');
+        $m = ehough_mockery_Mockery::mock('Gateway');
         $m->shouldReceive('iDoSomethingReallyCoolHere');
         $m->iDoSomethingReallyCoolHere();
     }
@@ -408,7 +408,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testCanPartialMockObjectUsingMagicCallMethodsInPlaceOfNormalMethods()
     {
-        $m = \Mockery::mock(new Gateway);
+        $m = ehough_mockery_Mockery::mock(new Gateway);
         $m->shouldReceive('iDoSomethingReallyCoolHere');
         $m->iDoSomethingReallyCoolHere();
     }
@@ -418,7 +418,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testCanMockClassWhereMethodHasReferencedParameter()
     {
-        $m = \Mockery::mock(new MockeryTest_MethodParamRef);
+        $m = ehough_mockery_Mockery::mock(new MockeryTest_MethodParamRef);
     }
 
     /**
@@ -426,7 +426,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testCanPartiallyMockObjectWhereMethodHasReferencedParameter()
     {
-        $m = \Mockery::mock(new MockeryTest_MethodParamRef2);
+        $m = ehough_mockery_Mockery::mock(new MockeryTest_MethodParamRef2);
     }
 
     /**
@@ -451,7 +451,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Mockery\Exception
+     * @expectedException ehough_mockery_mockery_Exception
      */
     public function testMockingMultipleInterfacesThrowsExceptionWhenGivenNonExistingClassOrInterface()
     {
@@ -480,34 +480,34 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testCanMockStaticMethods()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('alias:MyNamespace\MyClass2');
         $m->shouldReceive('staticFoo')->andReturn('bar');
         $this->assertEquals('bar', \MyNameSpace\MyClass2::staticFoo());
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     /**
      * @group issue/7
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testMockedStaticMethodsObeyMethodCounting()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('alias:MyNamespace\MyClass3');
         $m->shouldReceive('staticFoo')->once()->andReturn('bar');
         $this->container->mockery_verify();
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     /**
      * @expectedException BadMethodCallException
      */
     public function testMockedStaticThrowsExceptionWhenMethodDoesNotExist(){
-    	\Mockery::setContainer($this->container);
+    	ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('alias:MyNamespace\StaticNoMethod');
         $this->assertEquals('bar', \MyNameSpace\StaticNoMethod::staticFoo());
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     /**
@@ -561,48 +561,48 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
     public function testInstantiationOfInstanceMock()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('overload:MyNamespace\MyClass5');
         $instance = new \MyNamespace\MyClass5;
         $this->assertTrue($instance instanceof \MyNamespace\MyClass5);
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     public function testInstantiationOfInstanceMockImportsExpectations()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('overload:MyNamespace\MyClass6');
         $m->shouldReceive('foo')->andReturn('bar');
         $instance = new \MyNamespace\MyClass6;
         $this->assertEquals('bar', $instance->foo());
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     public function testInstantiationOfInstanceMocksIgnoresVerificationOfOriginMock()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('overload:MyNamespace\MyClass7');
         $m->shouldReceive('foo')->once()->andReturn('bar');
         $this->container->mockery_verify();
-        \Mockery::resetContainer(); //should not throw an exception
+        ehough_mockery_Mockery::resetContainer(); //should not throw an exception
     }
 
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testInstantiationOfInstanceMocksAddsThemToContainerForVerification()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('overload:MyNamespace\MyClass8');
         $m->shouldReceive('foo')->once();
         $instance = new \MyNamespace\MyClass8;
         $this->container->mockery_verify();
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     public function testInstantiationOfInstanceMocksDoesNotHaveCountValidatorCrossover()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('overload:MyNamespace\MyClass9');
         $m->shouldReceive('foo')->once();
         $instance1 = new \MyNamespace\MyClass9;
@@ -610,30 +610,30 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $instance1->foo();
         $instance2->foo();
         $this->container->mockery_verify();
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     /**
-     * @expectedException \Mockery\CountValidator\Exception
+     * @expectedException ehough_mockery_mockery_countvalidator_Exception
      */
     public function testInstantiationOfInstanceMocksDoesNotHaveCountValidatorCrossover2()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('overload:MyNamespace\MyClass10');
         $m->shouldReceive('foo')->once();
         $instance1 = new \MyNamespace\MyClass10;
         $instance2 = new \MyNamespace\MyClass10;
         $instance1->foo();
         $this->container->mockery_verify();
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     public function testMethodParamsPassedByReferenceHaveReferencePreserved()
     {
         $m = $this->container->mock('MockeryTestRef1');
         $m->shouldReceive('foo')->with(
-            \Mockery::on(function(&$a) {$a += 1;return true;}),
-            \Mockery::any()
+            ehough_mockery_Mockery::on(function(&$a) {$a += 1;return true;}),
+            ehough_mockery_Mockery::any()
         );
         $a = 1;
         $b = 1;
@@ -645,20 +645,20 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     public function testCanOverrideExpectedParametersOfInternalPHPClassesToPreserveRefs()
     {
         if (!class_exists('MongoCollection', false)) $this->markTestSkipped('ext/mongo not installed');
-        \Mockery::getConfiguration()->setInternalClassMethodParamMap(
+        ehough_mockery_Mockery::getConfiguration()->setInternalClassMethodParamMap(
             'MongoCollection', 'insert', array('&$data', '$options')
         );
         $m = $this->container->mock('MongoCollection');
         $m->shouldReceive('insert')->with(
-            \Mockery::on(function(&$data) {$data['_id'] = 123; return true;}),
-            \Mockery::type('array')
+            ehough_mockery_Mockery::on(function(&$data) {$data['_id'] = 123; return true;}),
+            ehough_mockery_Mockery::type('array')
         );
         $data = array('a'=>1,'b'=>2);
         $m->insert($data, array());
         $this->assertTrue(isset($data['_id']));
         $this->assertEquals(123, $data['_id']);
         $this->container->mockery_verify();
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     /**
@@ -675,10 +675,10 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testClassDeclaringIssetDoesNotThrowException()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('MockeryTest_IssetMethod');
         $this->container->mockery_verify();
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     /**
@@ -686,10 +686,10 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testClassDeclaringUnsetDoesNotThrowException()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('MockeryTest_UnsetMethod');
         $this->container->mockery_verify();
-        \Mockery::resetContainer();
+        ehough_mockery_Mockery::resetContainer();
     }
 
     /**
@@ -697,15 +697,15 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testCallingSelfOnlyReturnsLastMockCreatedOrCurrentMockBeingProgrammedSinceTheyAreOneAndTheSame()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('MockeryTestFoo');
         $this->assertFalse($this->container->self() instanceof MockeryTestFoo2);
         //$m = $this->container->mock('MockeryTestFoo2');
         //$this->assertTrue($this->container->self() instanceof MockeryTestFoo2);
         //$m = $this->container->mock('MockeryTestFoo');
-        //$this->assertFalse(\Mockery::self() instanceof MockeryTestFoo2);
-        //$this->assertTrue(\Mockery::self() instanceof MockeryTestFoo);
-        \Mockery::resetContainer();
+        //$this->assertFalse(ehough_mockery_Mockery::self() instanceof MockeryTestFoo2);
+        //$this->assertTrue(ehough_mockery_Mockery::self() instanceof MockeryTestFoo);
+        ehough_mockery_Mockery::resetContainer();
     }
 
     /**
@@ -713,7 +713,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testCreatingMockOfClassWithExistingToStringMethodDoesntCreateClassWithTwoToStringMethods()
     {
-        \Mockery::setContainer($this->container);
+        ehough_mockery_Mockery::setContainer($this->container);
         $m = $this->container->mock('MockeryTest_WithToString'); // this would fatal
         $m->shouldReceive("__toString")->andReturn('dave');
         $this->assertEquals("dave", "$m");
@@ -851,12 +851,12 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
     public function testMockeryCloseForIllegalIssetFileInclude()
     {
-        $m = \Mockery::mock('StdClass')
+        $m = ehough_mockery_Mockery::mock('StdClass')
             ->shouldReceive('get')
             ->andReturn(false)
             ->getMock();
         $m->get();
-        \Mockery::close();
+        ehough_mockery_Mockery::close();
     }
 
     public function testMockeryShouldDistinguishBetweenConstructorParamsAndClosures()

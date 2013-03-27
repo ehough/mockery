@@ -1,6 +1,6 @@
 <?php
 /**
- * Mockery
+ * ehough_mockery_Mockery
  *
  * LICENSE
  *
@@ -12,8 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to padraic@php.net so we can send you a copy immediately.
  *
- * @category   Mockery
- * @package    Mockery
+ *
+ *
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2010 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
@@ -28,7 +28,7 @@ class WithFormatterExpectationTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $expected,
-            Mockery::formatObjects($args)
+            ehough_mockery_Mockery::formatObjects($args)
         );
     }
 
