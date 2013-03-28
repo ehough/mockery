@@ -424,7 +424,8 @@ class ehough_mockery_Mockery
             );
         }
         $exp = null;
-        $nextExp = function ($n) use ($add) {return $add($n);};
+        $nextExp = array('ehough_mockery_Mockery', '_callbackNextExp1');//function ($n) use ($add) {return $add($n);};
+        $useArg = $add;
         while (true) {
             $method = array_shift($names);
             $exp = $mock->mockery_getExpectationsFor($method);
@@ -432,14 +433,25 @@ class ehough_mockery_Mockery
             if (is_null($exp) || empty($names)) {
                 $needNew = true;
             }
-            if ($needNew) $exp = $nextExp($method);
+            if ($needNew) $exp = call_user_func($nextExp, $method, $useArg);  //$nextExp($method);
             if (empty($names)) break;
             if ($needNew) {
                 $mock = $container->mock('demeter_' . $method);
                 $exp->andReturn($mock);
             }
-            $nextExp = function ($n) use ($mock) {return $mock->shouldReceive($n);};
+            $nextExp = array('ehough_mockery_Mockery', '_callbackNextExp2');  //function ($n) use ($mock) {return $mock->shouldReceive($n);};
+            $useArg = $mock;
         }
         return $exp;
+    }
+
+    public static function _callbackNextExp2($method, $mock)
+    {
+        return $mock->shouldReceive($method);
+    }
+
+    public static function _callbackNextExp1($method, $add)
+    {
+        return call_user_func($add, $method);
     }
 }

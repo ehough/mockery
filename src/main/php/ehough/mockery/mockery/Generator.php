@@ -426,18 +426,21 @@ BODY;
     {
         \$self = \$this;
         \$lastExpectation = ehough_mockery_Mockery::parseShouldReturnArgs(
-            \$this, func_get_args(), function(\$method) use (\$self) {
-                \$director = \$self->mockery_getExpectationsFor(\$method);
-                if (!\$director) {
-                    \$director = new ehough_mockery_mockery_ExpectationDirector(\$method, \$self);
-                    \$self->mockery_setExpectationsFor(\$method, \$director);
-                }
-                \$expectation = new ehough_mockery_mockery_Expectation(\$self, \$method);
-                \$director->addExpectation(\$expectation);
-                return \$expectation;
-            }
+            \$this, func_get_args(), array(\$this, '_callbackShouldReceive')
         );
         return \$lastExpectation;
+    }
+
+    public function _callbackShouldReceive(\$method)
+    {
+        \$director = \$this->mockery_getExpectationsFor(\$method);
+        if (!\$director) {
+            \$director = new ehough_mockery_mockery_ExpectationDirector(\$method, \$this);
+            \$this->mockery_setExpectationsFor(\$method, \$director);
+        }
+        \$expectation = new ehough_mockery_mockery_Expectation(\$this, \$method);
+        \$director->addExpectation(\$expectation);
+        return \$expectation;
     }
 
     public function shouldDeferMissing()
