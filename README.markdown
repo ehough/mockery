@@ -13,8 +13,8 @@ Once PHP 5.3+ adoption level near closer to 100%, this library will be retired.
 ### Differences from [padraic/mockery](https://github.com/padraic/mockery)
 
 The primary difference is naming conventions of the `padraic/mockery` classes.
-Instead of the `\Stash` namespace (and sub-namespaces), prefix the `padraic/mockery` class names
-with `ehough_stash` and follow the [PEAR naming convention](http://pear.php.net/manual/en/standards.php)
+Instead of the `\Mockery` namespace (and sub-namespaces), prefix the `padraic/mockery` class names
+with `ehough_mockery` and follow the [PEAR naming convention](http://pear.php.net/manual/en/standards.php)
 
 A few examples of class naming conversions:
 
