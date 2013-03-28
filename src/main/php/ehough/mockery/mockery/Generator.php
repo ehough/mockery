@@ -221,7 +221,7 @@ class ehough_mockery_mockery_Generator
     {
         $name = $method->getName();
 
-        if (static::_isReservedWord($name)) {
+        if (self::_isReservedWord($name)) {
             return " /* Could not replace $name() as it is a reserved word */ ";
         }
 
@@ -310,7 +310,7 @@ BODY;
     {
         $name = $method->getName();
 
-        if (static::_isReservedWord($name)) {
+        if (self::_isReservedWord($name)) {
             return " /* Could not replace $name() as it is a reserved word */ ";
         }
 
@@ -348,7 +348,7 @@ BODY;
         static $flippedReservedWords;
 
         if (null === $flippedReservedWords) {
-            $flippedReservedWords = array_fill_keys(static::$reservedWords, true);
+            $flippedReservedWords = array_fill_keys(self::$reservedWords, true);
         }
 
         return isset($flippedReservedWords[$word]);
