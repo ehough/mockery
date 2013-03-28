@@ -381,15 +381,18 @@ class ehough_mockery_mockery_Container
             );
         }
         if (false !== strpos($fqcn, "\\")) {
-            $parts = array_filter(explode("\\", $fqcn), function($part) {
-                return $part !== "";
-            });
+            $parts = array_filter(explode("\\", $fqcn), array($this, '_callbackDeclareClass'));
             $cl = array_pop($parts);
             $ns = implode("\\", $parts);
             eval(" namespace $ns { class $cl {} }");
         } else {
             eval(" class $fqcn {} ");
         }
+    }
+
+    public function _callbackDeclareClass($part)
+    {
+        return $part !== "";
     }
 
 }
