@@ -287,7 +287,7 @@ class ehough_mockery_mockery_Expectation
         if ($expected instanceof ehough_mockery_mockery_matcher_MatcherAbstract) {
             return $expected->match($actual);
         }
-        if ($expected instanceof \Hamcrest_Matcher) {
+        if ($expected instanceof Hamcrest_Matcher) {
             return $expected->matches($actual);
         }
         return false;

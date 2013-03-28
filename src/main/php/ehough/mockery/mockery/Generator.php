@@ -468,11 +468,11 @@ BODY;
         return \$this;
     }
 
-    public function shouldExpect(Closure \$closure)
+    public function shouldExpect(\$callback)
     {
         \$recorder = new ehough_mockery_mockery_Recorder(\$this, \$this->_mockery_partial);
         \$this->_mockery_disableExpectationMatching = true;
-        \$closure(\$recorder);
+        call_user_func(\$callback, \$recorder);
         \$this->_mockery_disableExpectationMatching = false;
         return \$this;
     }

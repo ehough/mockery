@@ -30,7 +30,11 @@ class ehough_mockery_mockery_matcher_Closure extends ehough_mockery_mockery_matc
     public function match(&$actual)
     {
         $closure = $this->_expected;
-        $result = $closure($actual);
+        if (version_compare(PHP_VERSION, '5.3') >= 0 && $closure instanceof Closure) {
+            $result = $closure($actual);
+        } else {
+            $result = call_user_func($closure, $actual);
+        }
         return $result === true;
     }
     

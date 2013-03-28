@@ -205,9 +205,9 @@ class ehough_mockery_Mockery
      *
      * @return
      */
-    public static function on($closure)
+    public static function on($callback)
     {
-        $return = new ehough_mockery_mockery_matcher_Closure($closure);
+        $return = new ehough_mockery_mockery_matcher_Closure($callback);
         return $return;
     }
 

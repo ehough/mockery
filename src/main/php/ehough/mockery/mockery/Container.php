@@ -162,7 +162,11 @@ class ehough_mockery_mockery_Container
             $mock->shouldReceive($quickdefs);
         }
         if (!empty($expectationClosure)) {
-            $expectationClosure($mock);
+            if (version_compare(PHP_VERSION, '5.3') >= 0 && $expectationClosure instanceof Closure) {
+                $expectationClosure($mock);
+            } else {
+                call_user_func($expectationClosure, $mock);
+            }
         }
         $this->rememberMock($mock);
         return $mock;

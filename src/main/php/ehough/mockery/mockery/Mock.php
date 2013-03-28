@@ -218,13 +218,13 @@ class ehough_mockery_mockery_Mock implements ehough_mockery_mockery_MockInterfac
      * current mock object. The partial may then be passed to a second process
      * to see if it fulfils the same (or exact same) contract as the original.
      *
-     * @param Closure $closure
+     * @param callable $closure
      */
-    public function shouldExpect(\Closure $closure)
+    public function shouldExpect($closure)
     {
         $recorder = new ehough_mockery_mockery_Recorder($this, $this->_mockery_partial);
         $this->_mockery_disableExpectationMatching = true;
-        $closure($recorder);
+        call_user_func($closure, $recorder);
         $this->_mockery_disableExpectationMatching = false;
         return $this;
     }
