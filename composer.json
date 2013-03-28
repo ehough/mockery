@@ -1,6 +1,6 @@
 {
     "name": "ehough/mockery",
-    "description": "Fork of seldaek/monolog that works with PHP 5.2 and above.",
+    "description": "Fork of padraic/mockery compatible with PHP 5.2+.",
     "keywords": ["library", "testing", "test", "stub", "mock", "mockery", "test double", "tdd", "bdd", "mock objects"],
     "homepage": "https://github.com/ehough/mockery",
     "license": "BSD-3-Clause",
