@@ -425,8 +425,10 @@ BODY;
     public function shouldReceive()
     {
         \$self = \$this;
+        //http://stackoverflow.com/questions/4979507/difference-in-behaviour-of-func-num-args-func-get-arg-and-func-get-args-from-php
+        \$args = func_get_args();
         \$lastExpectation = ehough_mockery_Mockery::parseShouldReturnArgs(
-            \$this, func_get_args(), array(\$this, '_callbackShouldReceive')
+            \$this, \$args, array(\$this, '_callbackShouldReceive')
         );
         return \$lastExpectation;
     }

@@ -148,7 +148,9 @@ class ehough_mockery_Mockery
      */
     public static function ducktype()
     {
-        $return = new ehough_mockery_mockery_matcher_Ducktype(func_get_args());
+        //http://stackoverflow.com/questions/4979507/difference-in-behaviour-of-func-num-args-func-get-arg-and-func-get-args-from-php
+        $args = func_get_args();
+        $return = new ehough_mockery_mockery_matcher_Ducktype($args);
         return $return;
     }
 
@@ -170,7 +172,9 @@ class ehough_mockery_Mockery
      */
     public static function contains()
     {
-        $return = new ehough_mockery_mockery_matcher_Contains(func_get_args());
+        //http://stackoverflow.com/questions/4979507/difference-in-behaviour-of-func-num-args-func-get-arg-and-func-get-args-from-php
+        $args = func_get_args();
+        $return = new ehough_mockery_mockery_matcher_Contains($args);
         return $return;
     }
 
@@ -236,7 +240,9 @@ class ehough_mockery_Mockery
      */
     public static function anyOf()
     {
-        $return = new ehough_mockery_mockery_matcher_AnyOf(func_get_args());
+        //http://stackoverflow.com/questions/4979507/difference-in-behaviour-of-func-num-args-func-get-arg-and-func-get-args-from-php
+        $args = func_get_args();
+        $return = new ehough_mockery_mockery_matcher_AnyOf($args);
         return $return;
     }
 
@@ -247,7 +253,9 @@ class ehough_mockery_Mockery
      */
     public static function notAnyOf()
     {
-        $return = new ehough_mockery_mockery_matcher_NotAnyOf(func_get_args());
+        //http://stackoverflow.com/questions/4979507/difference-in-behaviour-of-func-num-args-func-get-arg-and-func-get-args-from-php
+        $args = func_get_args();
+        $return = new ehough_mockery_mockery_matcher_NotAnyOf($args);
         return $return;
     }
 
