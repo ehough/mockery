@@ -1,6 +1,6 @@
 # mockery [![Build Status](https://secure.travis-ci.org/ehough/mockery.png)](http://travis-ci.org/ehough/mockery)
 
-Fork of [padraic/mockery](https://github.com/padraic/mockery) compatible with PHP 5.2+. Fully tested and frequently merged with upstream changes from [padraic/mockery](https://github.com/padraic/mockery).
+Fork of [padraic/mockery](https://github.com/padraic/mockery) compatible with PHP 5.2+.
 
 ### Motivation
 
