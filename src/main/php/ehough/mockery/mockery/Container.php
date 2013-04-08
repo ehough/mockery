@@ -162,7 +162,11 @@ class ehough_mockery_mockery_Container
             $mock->shouldReceive($quickdefs);
         }
         if (!empty($expectationClosure)) {
-            $expectationClosure($mock);
+            if (version_compare(PHP_VERSION, '5.3') >= 0 && $expectationClosure instanceof Closure) {
+                $expectationClosure($mock);
+            } else {
+                call_user_func($expectationClosure, $mock);
+            }
         }
         $this->rememberMock($mock);
         return $mock;
@@ -381,15 +385,18 @@ class ehough_mockery_mockery_Container
             );
         }
         if (false !== strpos($fqcn, "\\")) {
-            $parts = array_filter(explode("\\", $fqcn), function($part) {
-                return $part !== "";
-            });
+            $parts = array_filter(explode("\\", $fqcn), array($this, '_callbackDeclareClass'));
             $cl = array_pop($parts);
             $ns = implode("\\", $parts);
             eval(" namespace $ns { class $cl {} }");
         } else {
             eval(" class $fqcn {} ");
         }
+    }
+
+    public function _callbackDeclareClass($part)
+    {
+        return $part !== "";
     }
 
 }

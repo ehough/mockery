@@ -150,8 +150,11 @@ class ehough_mockery_mockery_Mock implements ehough_mockery_mockery_MockInterfac
      */
     public function shouldReceive()
     {
+        //http://stackoverflow.com/questions/4979507/difference-in-behaviour-of-func-num-args-func-get-arg-and-func-get-args-from-php
+        $args = func_get_args();
+
         $lastExpectation = ehough_mockery_Mockery::parseShouldReturnArgs(
-            $this, func_get_args(), array($this, '_callbackShouldReceive'));
+            $this, $args, array($this, '_callbackShouldReceive'));
         return $lastExpectation;
     }
 
@@ -215,13 +218,13 @@ class ehough_mockery_mockery_Mock implements ehough_mockery_mockery_MockInterfac
      * current mock object. The partial may then be passed to a second process
      * to see if it fulfils the same (or exact same) contract as the original.
      *
-     * @param Closure $closure
+     * @param callable $closure
      */
-    public function shouldExpect(\Closure $closure)
+    public function shouldExpect($closure)
     {
         $recorder = new ehough_mockery_mockery_Recorder($this, $this->_mockery_partial);
         $this->_mockery_disableExpectationMatching = true;
-        $closure($recorder);
+        call_user_func($closure, $recorder);
         $this->_mockery_disableExpectationMatching = false;
         return $this;
     }

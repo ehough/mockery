@@ -221,7 +221,7 @@ class ehough_mockery_mockery_Generator
     {
         $name = $method->getName();
 
-        if (static::_isReservedWord($name)) {
+        if (self::_isReservedWord($name)) {
             return " /* Could not replace $name() as it is a reserved word */ ";
         }
 
@@ -310,7 +310,7 @@ BODY;
     {
         $name = $method->getName();
 
-        if (static::_isReservedWord($name)) {
+        if (self::_isReservedWord($name)) {
             return " /* Could not replace $name() as it is a reserved word */ ";
         }
 
@@ -348,7 +348,7 @@ BODY;
         static $flippedReservedWords;
 
         if (null === $flippedReservedWords) {
-            $flippedReservedWords = array_fill_keys(static::$reservedWords, true);
+            $flippedReservedWords = array_fill_keys(self::$reservedWords, true);
         }
 
         return isset($flippedReservedWords[$word]);
@@ -425,8 +425,10 @@ BODY;
     public function shouldReceive()
     {
         \$self = \$this;
+        //http://stackoverflow.com/questions/4979507/difference-in-behaviour-of-func-num-args-func-get-arg-and-func-get-args-from-php
+        \$args = func_get_args();
         \$lastExpectation = ehough_mockery_Mockery::parseShouldReturnArgs(
-            \$this, func_get_args(), array(\$this, '_callbackShouldReceive')
+            \$this, \$args, array(\$this, '_callbackShouldReceive')
         );
         return \$lastExpectation;
     }
@@ -466,11 +468,11 @@ BODY;
         return \$this;
     }
 
-    public function shouldExpect(Closure \$closure)
+    public function shouldExpect(\$callback)
     {
         \$recorder = new ehough_mockery_mockery_Recorder(\$this, \$this->_mockery_partial);
         \$this->_mockery_disableExpectationMatching = true;
-        \$closure(\$recorder);
+        call_user_func(\$callback, \$recorder);
         \$this->_mockery_disableExpectationMatching = false;
         return \$this;
     }
