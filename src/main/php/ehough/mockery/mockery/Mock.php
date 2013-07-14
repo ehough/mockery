@@ -255,7 +255,25 @@ class ehough_mockery_mockery_Mock implements ehough_mockery_mockery_MockInterfac
         if (isset($this->_mockery_expectations[$method])
         && !$this->_mockery_disableExpectationMatching) {
             $handler = $this->_mockery_expectations[$method];
-            return $handler->call($args);
+
+            try {
+                $return = $handler->call($args);
+            } catch (ehough_mockery_mockery_exception_NoMatchingExpectationException $e) {
+                echo 'HI';
+                if ($this->_mockery_ignoreMissing) {
+                    if ($this->_mockery_ignoreMissingAsUndefined === true) {
+                        $undef = new ehough_mockery_mockery_Undefined();
+                        return call_user_func_array(array($undef, $method), $args);
+                    } else {
+                        return null;
+                    }
+                }
+
+                throw $e; 
+            }
+
+            return $return;
+
         } elseif (!is_null($this->_mockery_partial) && method_exists($this->_mockery_partial, $method)) {
             return call_user_func_array(array($this->_mockery_partial, $method), $args);
         } elseif ($this->_mockery_deferMissing && is_callable("parent::$method")) {
@@ -479,6 +497,20 @@ class ehough_mockery_mockery_Mock implements ehough_mockery_mockery_MockInterfac
     public function mockery_getMockableProperties()
     {
         return $this->_mockery_mockableProperties;
+    }
+
+    /**
+     * Calls a parent class method and returns the result. Used in a passthru
+     * expectation where a real return value is required while still taking
+     * advantage of expectation matching and call count verification.
+     *
+     * @param string $name
+     * @param array $args
+     * @return mixed
+     */
+    public function mockery_callSubjectMethod($name, array $args)
+    {
+        return call_user_func_array('parent::' . $name, $args);
     }
 
 }
