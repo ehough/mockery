@@ -5,7 +5,7 @@ Fork of [padraic/mockery](https://github.com/padraic/mockery) compatible with PH
 ### Motivation
 
 [padraic/mockery](https://github.com/padraic/mockery) is a fantastic mocking library, but it's only compatible with PHP 5.3+. While 97% of PHP servers run PHP 5.2 or higher,
-a whopping **47% of all servers are still running PHP 5.2** ([source](http://w3techs.com/technologies/details/pl-php/5/all)).
+a whopping **44% of all servers are still running PHP 5.2 or lower** ([source](http://w3techs.com/technologies/details/pl-php/5/all)).
 It would be a shame to exempt this library from nearly half of the world's servers just because of a few version incompatibilities.
 
 Once PHP 5.3+ adoption levels near closer to 100%, this library will be retired.
@@ -25,3 +25,8 @@ A few examples of class naming conversions:
 ### Usage
 
 Visit [padraic/mockery](https://github.com/padraic/mockery) for the current documentation.
+
+### Releases and Versioning
+
+Releases are synchronized with the upstream padraic repository. e.g. `ehough/mockery 0.8.0` has merged the code
+from `padraic/mockery 0.8.0`.
