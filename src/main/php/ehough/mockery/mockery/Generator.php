@@ -49,7 +49,7 @@ class ehough_mockery_mockery_Generator
         $allowFinal = false, $block = array(), $makeInstanceMock = false,
         $partialMethods = array())
     {
-        if (is_null($mockName)) $mockName = uniqid('Mockery_');
+        if (is_null($mockName)) $mockName = str_replace('.','_',uniqid('Mockery_'));
         $definition = '';
         $inheritance = '';
         $interfaceInheritance = array();
@@ -178,16 +178,17 @@ class ehough_mockery_mockery_Generator
             if ($method->isFinal()) {
                 continue;
             }
+            $lowercaseMethodName = strtolower($method->getName());
             if (!$method->isDestructor()
             //&& !$method->isStatic()
-            && $method->getName() !== '__call'
-            && $method->getName() !== '__clone'
-            && $method->getName() !== '__wakeup'
-            && $method->getName() !== '__set'
-            && $method->getName() !== '__get'
-            && $method->getName() !== '__toString'
-            && $method->getName() !== '__isset'
-            && $method->getName() !== '__callStatic') {
+            && $lowercaseMethodName !== '__call'
+            && $lowercaseMethodName !== '__clone'
+            && $lowercaseMethodName !== '__wakeup'
+            && $lowercaseMethodName !== '__set'
+            && $lowercaseMethodName !== '__get'
+            && $lowercaseMethodName !== '__tostring'
+            && $lowercaseMethodName !== '__isset'
+            && $lowercaseMethodName !== '__callstatic') {
                 $definition .= self::_replacePublicMethod($method);
             }
             if ($method->getName() == '__call') {
@@ -227,6 +228,13 @@ class ehough_mockery_mockery_Generator
 
         $body = '';
         if ($name !== '__construct' && $method->isPublic()) {
+            if ( $method->isStatic() ) {
+                $return_clause = "self::__callStatic('$name', \$args);";
+            }
+            else {
+                $return_clause = "\$this->__call('$name', \$args);";
+            }
+
             /**
              * Purpose of this block is to create an argument array where
              * references are preserved (func_get_args() does not preserve
@@ -240,7 +248,7 @@ if (isset(\$stack[0]['args'])) {
         \$args[\$i] =& \$stack[0]['args'][\$i];
     }
 }
-\$ret = \$this->__call('$name', \$args);
+\$ret = $return_clause
 return \$ret;
 BODY;
         }
@@ -272,11 +280,12 @@ BODY;
         $methodParams = array();
         $params = $method->getParameters();
 		$typehintMatch = array();
+        $isCompatibleWithSelf = (version_compare(PHP_VERSION, '5.4.1') >= 0);
         foreach ($params as $i => $param) {
             $paramDef = '';
             if ($param->isArray()) {
                 $paramDef .= 'array ';
-            } elseif ($param->getClass()) {
+            } elseif ($isCompatibleWithSelf && $param->getClass()) {
                 $paramDef .= $param->getClass()->getName() . ' ';
             }  elseif (preg_match('/^Parameter #[0-9]+ \[ \<(required|optional)\> (?<typehint>\S+ )?.*\$' . $param->getName() . ' .*\]$/', $param->__toString(), $typehintMatch)) {
                 if (!empty($typehintMatch['typehint'])) {
@@ -493,7 +502,24 @@ BODY;
         if (isset(\$this->_mockery_expectations[\$method])
         && !\$this->_mockery_disableExpectationMatching) {
             \$handler = \$this->_mockery_expectations[\$method];
-            return \$handler->call(\$args);
+
+            try {
+                \$return = \$handler->call(\$args);
+            } catch (ehough_mockery_mockery_exception_NoMatchingExpectationException \$e) {
+                if (\$this->_mockery_ignoreMissing) {
+                    if (\$this->_mockery_ignoreMissingAsUndefined === true) {
+                        \$undef = new ehough_mockery_mockery_Undefined();
+                        return call_user_func_array(array(\$undef, \$method), \$args);
+                    } else {
+                        return null;
+                    }
+                }
+
+                throw \$e;
+            }
+
+            return \$return;
+
         } elseif (!is_null(\$this->_mockery_partial) && method_exists(\$this->_mockery_partial, \$method)) {
             return call_user_func_array(array(\$this->_mockery_partial, \$method), \$args);
         } elseif (\$this->_mockery_deferMissing && is_callable("parent::\$method")) {
@@ -633,6 +659,11 @@ BODY;
     public function mockery_getMockableProperties()
     {
         return \$this->_mockery_mockableProperties;
+    }
+
+    public function mockery_callSubjectMethod(\$name, array \$args)
+    {
+        return call_user_func_array('parent::' . \$name, \$args);
     }
 
     //** Everything below this line is not copied from/needed for Mockery/Mock **//

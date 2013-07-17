@@ -242,7 +242,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
     public function testSplfileinfoClassMockPassesUserExpectations()
     {
-        $file = $this->container->mock('SplFileInfo[getFilename,getPathname,getExtension,getMTime]');
+        $file = $this->container->mock('SplFileInfo[getFilename,getPathname,getExtension,getMTime]', array(__FILE__));
         $file->shouldReceive('getFilename')->once()->andReturn('foo');
         $file->shouldReceive('getPathname')->once()->andReturn('path/to/foo');
         $file->shouldReceive('getExtension')->once()->andReturn('css');
@@ -870,6 +870,52 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     {
         $mock = $this->container->mock('MockeryTest_CallStatic');
     }
+
+    /**
+     * @issue issue/139
+     */
+    public function testCanMockClassWithOldStyleConstructorAndArguments()
+    {
+        $mock = $this->container->mock('MockeryTest_OldStyleConstructor');
+    }
+
+    /** @group issue/144 */
+    public function testMockeryShouldInterpretEmptyArrayAsConstructorArgs()
+    {
+        $mock = $this->container->mock("EmptyConstructorTest", array());
+        $this->assertSame(0, $mock->numberOfConstructorArgs);
+    }
+
+    /** @group issue/144 */
+    public function testMockeryShouldCallConstructorByDefaultWhenRequestingPartials()
+    {
+        $mock = $this->container->mock("EmptyConstructorTest[foo]");
+        $this->assertSame(0, $mock->numberOfConstructorArgs);
+    }
+
+    /** @group issue/158 */
+    public function testMockeryShouldRespectInterfaceWithMethodParamSelf()
+    {
+        $this->container->mock('MockeryTest_InterfaceWithMethodParamSelf');
+    }
+
+    /** @group issue/162 */
+    public function testMockeryDoesntTryAndMockLowercaseToString()
+    {
+        $this->container->mock('MockeryTest_Lowercase_ToString');
+    }
+
+    /** @group issue/175 */
+    public function testExistingStaticMethodMocking()
+    {
+        ehough_mockery_Mockery::setContainer($this->container);
+        $mock = $this->container->mock('MockeryTest_PartialStatic[mockMe]');
+
+        $mock->shouldReceive('mockMe')->with(5)->andReturn(10);
+
+        $this->assertEquals(10, $mock::mockMe(5));
+        $this->assertEquals(3, $mock::keepMe(3));
+    }
 }
 
 class MockeryTest_CallStatic {
@@ -1084,4 +1130,41 @@ class MockeryTest_ImplementsIterator implements \Iterator {
     public function key(){}
     public function next(){}
     public function valid(){}
+}
+
+class MockeryTest_OldStyleConstructor {
+    public function MockeryTest_OldStyleConstructor($arg) {}
+}
+
+class EmptyConstructorTest {
+    public $numberOfConstructorArgs;
+
+    public function __construct()
+    {
+        $this->numberOfConstructorArgs = count(func_get_args());
+    }
+
+    public function foo() {
+
+    }
+}
+
+interface MockeryTest_InterfaceWithMethodParamSelf {
+    public function foo(self $bar);
+}
+
+class MockeryTest_Lowercase_ToString {
+    public function __tostring() { }
+}
+
+class MockeryTest_PartialStatic {
+    public static function mockMe($a)
+    {
+        return $a;
+    }
+
+    public static function keepMe($b)
+    {
+        return $b;
+    }
 }

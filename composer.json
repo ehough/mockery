@@ -12,10 +12,12 @@
         }
     ],
     "require": {
-        "php": ">=5.2"
+        "php": ">=5.2",
+        "lib-pcre": ">=7.0"
     },
     "require-dev": {
-        "hamcrest/hamcrest": "1.1.0"
+        "hamcrest/hamcrest": "1.1.0",
+         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
         "psr-0": { "ehough_mockery": "src/main/php" }
