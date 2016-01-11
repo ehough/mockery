@@ -1,14 +1,20 @@
-# mockery [![Build Status](https://secure.travis-ci.org/ehough/mockery.png)](http://travis-ci.org/ehough/mockery)
+## mockery
 
-Fork of [padraic/mockery](https://github.com/padraic/mockery) compatible with PHP 5.2+.
+[![Build Status](https://secure.travis-ci.org/ehough/mockery.png)](http://travis-ci.org/ehough/mockery)
+[![Project Status: Unsupported - The project has reached a stable, usable state but the author(s) have ceased all work on it. A new maintainer may be desired.](http://www.repostatus.org/badges/latest/unsupported.svg)](http://www.repostatus.org/#unsupported)
+[![Latest Stable Version](https://poser.pugx.org/ehough/mockery/v/stable)](https://packagist.org/packages/ehough/mockery)
+[![License](https://poser.pugx.org/ehough/mockery/license)](https://packagist.org/packages/ehough/mockery)
+
+**This library is no longer maintained.** Fork of [padraic/mockery](https://github.com/padraic/mockery) compatible with PHP 5.2+.
 
 ### Motivation
 
-[padraic/mockery](https://github.com/padraic/mockery) is a fantastic mocking library, but it's only compatible with PHP 5.3+. While 97% of PHP servers run PHP 5.2 or higher,
-a whopping **44% of all servers are still running PHP 5.2 or lower** ([source](http://w3techs.com/technologies/details/pl-php/5/all)).
-It would be a shame to exempt this library from nearly half of the world's servers just because of a few version incompatibilities.
+[padraic/mockery](https://github.com/padraic/mockery) is a fantastic mocking library, but it's only compatible with
+PHP 5.3+. While 99% of PHP servers run PHP 5.2 or higher, 12% of all servers are still running PHP 5.2 or lower
+([source](http://w3techs.com/technologies/details/pl-php/5/all)).
 
-Once PHP 5.3+ adoption levels near closer to 100%, this library will be retired.
+**Version 0.8.0 will likely be the last release of this library** since PHP 5.2 levels are finally falling below 10%.
+
 
 ### Differences from [padraic/mockery](https://github.com/padraic/mockery)
 
